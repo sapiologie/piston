@@ -126,6 +126,13 @@ const options = {
         parser: parse_int,
         validators: [x => x > 0 || `${x} cannot be negative`],
     },
+    body_limit: {
+        desc: 'Max request body size accepted by the API (any value parsable by the bytes package, e.g. "50mb")',
+        default: '50mb',
+        validators: [
+            x => (typeof x === 'string' && x.length > 0) || `${x} is not a non-empty string`,
+        ],
+    },
     limit_overrides: {
         desc: 'Per-language exceptions in JSON format for each of:\
         max_process_count, max_open_files, max_file_size, compile_memory_limit,\
